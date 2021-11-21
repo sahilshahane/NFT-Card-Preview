@@ -1,0 +1,6 @@
+.attribution {
+  @apply text-sm text-center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}

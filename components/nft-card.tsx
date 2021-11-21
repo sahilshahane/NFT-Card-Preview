@@ -1,60 +1,61 @@
+/* eslint-disable jsx-a11y/alt-text */
 import type { FC } from 'react'
+import style from '@styles/nft-card.module.css'
+import Stat from '@components/nft-card/stat'
+import Creator, { CreatorProps } from '@components/nft-card/creator'
+import Token, { TokenProps } from '@components/nft-card/token'
 
-interface NFTCardProps {
-  tokenImgSrc: string
-  creatorImgSrc: string
-  creatorName: string
+interface StatsProps {
   balance: string
   timeLeft: string
-  description: string
-  tokenName: string
+}
+
+interface NFTCardProps {
+  creator: CreatorProps
+  stats: StatsProps
+  token: TokenProps
 }
 
 const NFTCard: FC<NFTCardProps> = (props) => {
-  const {
-    balance,
-    creatorImgSrc,
-    creatorName,
-    description,
-    timeLeft,
-    tokenImgSrc,
-    tokenName,
-  } = props
+  const { stats, creator, token } = props
 
   return (
-    <div className='block bg-dark-blue-card w-80 p-5 rounded-xl'>
-      <div>
-        <div className='w-52 h-52 mx-auto bg-gray-600'>
-          <img
-            className=' rounded-lg'
-            src={tokenImgSrc}
-            alt='Equilibrium Image'
-          />
-        </div>
+    <div className={`${style.nftCard}`}>
+      <Token {...token} />
+
+      <div className='flex justify-between items-center gap-x-8 gap-y-1 flex-wrap '>
+        <Stat
+          img={{
+            src: '/images/icon-ethereum.svg',
+            width: '11px',
+            height: '18px',
+            layout: 'fixed',
+            alt: 'ethereum icon',
+          }}
+          text={{
+            className: 'text-cyan font-semibold',
+            value: stats.balance,
+          }}
+        />
+
+        <Stat
+          img={{
+            layout: 'fixed',
+            width: '17px',
+            height: '17px',
+            src: '/images/icon-clock.svg',
+            alt: 'clock icon',
+          }}
+          text={{
+            className: 'text-soft-blue font-light',
+            value: stats.timeLeft,
+          }}
+        />
       </div>
 
-      <h2 className='text-2xl  font-semibold'>{tokenName}</h2>
-      <h3 className='text-soft-blue font-light'>{description}</h3>
+      <hr className='border-dark-blue-line' />
 
-      <div className='flex justify-between mt-4'>
-        <div className='text-cyan font-semibold'>{balance}</div>
-        <div className='text-soft-blue font-light'>{timeLeft}</div>
-      </div>
-
-      <hr className='mt-4' />
-      <div className='flex items-center mt-4'>
-        <div className='mr-4'>
-          <img
-            className='w-9 h-9 border-1 rounded-full'
-            src={creatorImgSrc}
-            alt="creator's image"
-          />
-        </div>
-        <span className='text-soft-blue'>
-          Creation of{' '}
-          <span className='text-white capitalize'>{creatorName}</span>
-        </span>
-      </div>
+      <Creator {...creator} />
     </div>
   )
 }
