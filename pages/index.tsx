@@ -10,6 +10,15 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>NFT preview card component</title>
+        <meta
+          name='description'
+          content='NFT preview card challenge by frontend mentor'
+        />
+        <meta name='author' content='Sahil Shahane' />
+        <meta
+          name='keywords'
+          content='HTML, CSS, JSX, TSX, React, Nextjs, TailwindCSS'
+        />
       </Head>
       <div className='w-screen h-screen bg-dark-blue-main text-white'>
         <div className='h-full w-full flex justify-center items-center'>

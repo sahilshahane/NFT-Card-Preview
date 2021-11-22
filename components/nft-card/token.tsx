@@ -17,15 +17,29 @@ const Token: FC<TokenProps> = (props) => {
 
   return (
     <>
-      <div className='group relative w-full mx-auto z-10 cursor-pointer'>
-        <Image src={imgSrc} alt='token image' className='rounded-lg' />
+      <div className='group relative w-full h-64 mx-auto z-10 cursor-pointer'>
+        <Image
+          priority
+          src={imgSrc}
+          alt='token image'
+          className='rounded-lg'
+          objectFit='cover'
+          layout='fill'
+        />
         <div
+          role='link'
           onClick={() => setShowToken(!showToken)}
           className={`absolute bg-cyan transition-all duration-500 ${
-            showToken ? 'bg-opacity-0 opacity-0' : 'bg-opacity-50 opacity-100'
-          } w-full h-full rounded-lg top-0 bottom-0 left-0 right-0 flex items-center justify-center`}
+            showToken ? 'bg-opacity-0 opacity-0' : 'bg-opacity-40 opacity-100'
+          } w-full h-full rounded-lg top-0 flex items-center justify-center`}
         >
-          <img src='/images/icon-view.svg' alt='view / hide token' />
+          <Image
+            layout='intrinsic'
+            width={48}
+            height={48}
+            src='/images/icon-view.svg'
+            alt='view / hide token'
+          />
         </div>
 
         {/* <img src={tokenImgSrc} alt='Token Image Alt' /> */}
